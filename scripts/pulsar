@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+PID_HOME=/home/galaxy/pids/
+LOG_HOME=/home/galaxy/logs/
+
+
 show_help() {
 cat <<EOF
 Usage:
@@ -131,7 +136,7 @@ elif [ "$MODE" == "chaussette" ]; then
     chaussette "paste:$PULSAR_CONFIG_FILE" "$@"
 elif [ "$MODE" == "paster" ]; then
     echo "Starting pulsar with command [paster server \"$PULSAR_CONFIG_FILE\" \"$@\"]"
-    paster serve "$PULSAR_CONFIG_FILE" "$@"
+    paster serve "$PULSAR_CONFIG_FILE" --pid-file=${PID_HOME}pulsar.pid --log-file=${LOG_HOME}main.log "$@"
 elif [ "$MODE" == "webless" ]; then
     if hash pulsar-main 2>/dev/null; then
         # Running from pip install since

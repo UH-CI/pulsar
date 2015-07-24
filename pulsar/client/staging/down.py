@@ -129,7 +129,8 @@ class ResultsCollector(object):
         return collected
 
     def _collect_output(self, output_type, action, name):
-        log.info("collecting output %s with action %s" % (name, action))
+        #log.info("collecting output %s with action %s" % (name, action))
+        log.info("output_type: %s collecting output %s with action %s" % (output_type, name, action))
         return self.output_collector.collect_output(self, output_type, action, name)
 
 

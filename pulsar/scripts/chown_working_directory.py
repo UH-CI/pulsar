@@ -1,3 +1,4 @@
+
 from os import system
 from os.path import join, abspath
 from pulsar.main import ArgumentParser, PulsarConfigBuilder
@@ -29,7 +30,11 @@ def main(argv=None):
     else:
         job_directory = abspath(args.job_directory)
         assert job_directory
-    command = "chown -R '%s' '%s'" % (user, job_directory)
+
+    command = "chown -R '%s:%s' '%s'" % (user, user, job_directory)
+    system(command)
+
+    command = "chmod -R 770 '%s'" % ( job_directory)
     system(command)
 
 if __name__ == "__main__":
